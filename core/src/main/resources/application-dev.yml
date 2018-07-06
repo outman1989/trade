@@ -1,0 +1,41 @@
+server:
+  port: 8660
+  context-path: /api/trade
+
+#数据源
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.0.3:3306/trade?characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 12345
+    tomcat:
+      test-while-idle: true
+      test-on-borrow: true
+  #文件上传
+  http:
+    multipart:
+      maxFileSize: 20Mb
+      maxRequestSize: 30Mb
+mybatis:
+  configuration:
+    mapUnderscoreToCamelCase: true
+#  jpa:
+#    hibernate:
+#      ddl-auto: update #自动更新
+#    show-sql: true  #日志中显示sql语句
+
+
+#自定义配置项
+cfg:
+  env: "dev"  #环境类型
+  project: "trade"  #项目名称
+  show_sql: "on"  #打印SQL
+  worker_id: 1 #唯一编号生成器--工作ID (0~31)
+  datacenter_id: 1 #唯一编号生成器--数据中心ID (0~31)
+  upload_dir: "d://upload_dir/${cfg.project}/${cfg.env}/" #上传路径前缀
+  upload_file_user_head: "account_head" #demo用户头像
+  upload_file_piggery: "piggery" #猪场
+  upload_file_product_pig: "product_pig" #猪源
+  upload_file_notice: "notice" #公告
+  consult_phone: "400-677-1576" #客服电话
